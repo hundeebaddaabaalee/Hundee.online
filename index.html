@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="om">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SEO Optimization -->
+    <title>Hundee Baddaa Baalee | Content Creator & Poet</title>
+    <meta name="description" content="Website dhuunfaa Hundee Baddaa Baalee - Walaleessaa, Seenaa Oromoo, Yaada dhuunfaa, Galmee Jechoota Afaan Oromoo fi Viidiyoolee haaraa akkasumas tajaajila adda addaa.">
+    <meta name="keywords" content="Hundee Baddaa Baalee, Seenaa Oromoo, Galmee Jechoota Afaan Oromoo, Walaloo, Oromoo, Content Creator, Audio Video Editing">
+    <meta name="author" content="Hundee Baddaa Baalee">
+    <meta name="google-site-verification" content="ohG2sqakS7LRMdAjuig0J2hD9syI_8No6KlDv0FCyuU" />
+
+    <!-- Preconnect Optimization -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://img.youtube.com" crossorigin>
+
+    <!-- CSS Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+
+    <!-- Open Graph Tags -->
+<meta property="og:title" content="Hundee Baddaa Baalee | Personal Website">
+<meta property="og:description" content="Walaloowwan, seenaa Oromoo, galmee jechoota fi yaada dhuunfaa Hundee Baddaa Baalee asitti argadhu.">
+<meta property="og:image" content="https://hundee.online/profile.webp">
+<meta property="og:url" content="https://hundee.online/">
+<meta property="og:type" content="website">
+
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header>
+        <div class="header-left">
+            <button id="menuBtn" class="menu-toggle-btn" onclick="openSidebar()" aria-label="Open Sidebar Menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <a href="#home" class="logo-container">
+                <img src="logo.webp" alt="Logo Hundee" class="site-logo" width="50" height="50">
+                <h1 class="site-title">Hundee Baddaa Baalee </h1>
+            </a>
+        </div>
+
+        <nav class="desktop-nav" aria-label="Main Navigation">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="Jechoota/jechoota.html"><i class="fa-solid fa-book"></i> Jechoota</a></li>
+                <li><a href="#poem">Poem (Walaloo)</a></li>
+                <li><a href="#history">Seenaa Oromoo</a></li>
+                <li><a href="#opinion">Yaada (Opinion)</a></li>
+                <li><a href="#about">About Me</a></li>
+                <li><a href="#services">Tajaajila Koo</a></li>
+            </ul>
+        </nav>
+
+        <!-- Top Search Form -->
+        <div class="search-box">
+            <input type="text" id="topSearchInput" onkeyup="searchContent(this.value)" placeholder="Mata-duree fi walaloo barbaaduu..." aria-label="Search content">
+            <button onclick="triggerSearch()" aria-label="Search"><i class="fa fa-search"></i></button>
+        </div>
+    </header>
+
+    <!-- Sliding Sidebar Container -->
+    <aside id="mainSidebar" class="sidebar">
+        <div class="sidebar-header">
+            <h3><i class="fa-solid fa-compass"></i> Menu</h3>
+            <button id="closeBtn" class="close-btn" onclick="closeSidebar()" aria-label="Close Sidebar">&times;</button>
+        </div>
+
+        <!-- Search Bar Inside Sidebar -->
+        <div class="sidebar-search">
+            <input type="text" id="sidebarSearchInput" onkeyup="searchContent(this.value)" placeholder="Qabiyyee keessaa barbaaduu..." aria-label="Sidebar Search">
+            <i class="fa fa-search sidebar-search-icon"></i>
+        </div>
+
+        <ul class="sidebar-links">
+            <li><a href="#home" onclick="closeSidebar()"><i class="fa-solid fa-house"></i> Home</a></li>
+            <li><a href="Jechoota/jechoota.html" onclick="closeSidebar()"><i class="fa-solid fa-book-bookmark"></i> Galmee Jechoota</a></li>
+            <li><a href="#poem" onclick="closeSidebar()"><i class="fa-solid fa-feather"></i> Walaloowwan (Poems)</a></li>
+            <li><a href="#history" onclick="closeSidebar()"><i class="fa-solid fa-landmark"></i> Seenaa Oromoo</a></li>
+            <li><a href="#opinion" onclick="closeSidebar()"><i class="fa-regular fa-comment-dots"></i> Yaada (Opinion)</a></li>
+            <li><a href="#about" onclick="closeSidebar()"><i class="fa-solid fa-user"></i> Waa'ee Koo (About Me)</a></li>
+            <li><a href="#services" onclick="closeSidebar()"><i class="fa-solid fa-briefcase"></i> Tajaajila Koo</a></li>
+        </ul>
+
+        <div class="sidebar-footer">
+            <p>Hundee Baddaa Baalee &copy; 2026</p>
+        </div>
+    </aside>
+
+    <!-- Overlay Background -->
+    <div id="sidebarOverlay" class="overlay" onclick="closeSidebar()"></div>
+
+    <!-- MAIN LANDMARK -->
+    <main>
+        <!-- Home / Hero Section -->
+        <section id="home" class="hero-section search-item">
+            <div class="hero-content">
+                <img src="profile.webp" alt="Suuraa Hundee Baddaa Baalee" class="profile-img" width="132" height="165" loading="eager">
+                <h2>Baga Nagaan Dhuftan!</h2>
+                <p>Ani Hundee Baddaa Baalee ti. Content Creator fi Walaleessaa dha. 
+                Ammas, Dhimmoota akka siyaasaa, diinagdee fi hawaasummaa irratti niin hojjadha. Social media irratti Dhimmoota akka Seenaa Oromoo, Walaloo, fi Yaadaa dhuunfaa qoodachuun beekama.</p>
+            </div>
+            
+            
+            <!-- Kutaa Tajaajila koo-->
+            <article class="card search-item">
+    <h4><i class="fa-solid fa-briefcase" style="color: #d97706;"></i> Tajaajila koo </h4>
+    <p>Hunde Family</p>
+    <a href="Myapp/hunde_family.html" class="read-btn">Download Hunde family app &rarr;</a>
+</article>
+            
+            <!-- Barruulee & Viidiyoo Haaraa -->
+            <div class="latest-updates">
+                <h3><i class="fa-solid fa-fire"></i> Qabiyyee Haaraa</h3>
+                <div class="cards-grid">
+                    <article class="card highlight-card search-item">
+                        <h4><i class="fa-solid fa-book-bookmark"></i> Galmee Jechoota</h4>
+                        <p>Hiika jechoota Afaan Oromoo fi ibsa isaanii bal'inaan asitti argadhu...</p>
+                        <a href="Jechoota/jechoota.html" class="read-btn" aria-label="Galmee jechoota ilaali">Jechoota Ilalli &rarr;</a>
+                    </article>
+
+                    <article class="card search-item">
+                        <h4>Walaloo</h4>
+                        <p>Walaloo Baay'ee asii argachuu dandeess...</p>
+                        <a href="#poem" class="read-btn" aria-label="Walaloo haaraa dubbisi">Dubbisi</a>
+                    </article>
+
+                    <article class="card search-item">
+                        <h4>Seenaa qabsaahota oromoo</h4>
+                        <p>Qorannoo fi hubannoof...</p>
+                        <a href="#history" class="read-btn" aria-label="Seenaa haaraa dubbisi">Dubbisi</a>
+                    </article>
+                    
+                    <!-- YouTube Video Card -->
+<article class="card search-item">
+    <h4><i class="fa-brands fa-youtube" style="color:red;"></i> Viidiyoolee Social Media</h4>
+    
+    <!-- Fakkii Viidiyoo YouTube Play Button waliin -->
+    <a href="video.html" style="display: block; position: relative; margin: 12px 0; text-decoration: none;">
+        <img src="https://img.youtube.com/vi/vSmDW5cfWNY/hqdefault.jpg" alt="Viidiyoolee Social Media" loading="lazy" style="width: 100%; border-radius: 8px; display: block; object-fit: cover;">
+        <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 42px; color: red; text-shadow: 0 0 10px rgba(0,0,0,0.6);">▶</span>
+    </a>
+
+    <p>Viidiyoolee haaraa fi kofalchiisoo daawwachuuf linkii armaan gadii tuqaa...</p>
+    <a href="video.html" class="read-btn" aria-label="Viidiyoolee ilaali">Viidiyoolee Ilaali &rarr;</a>
+</article>
+
+        <!-- Kutaa Poem (Walaloo) -->
+        <section id="poem" class="content-section">
+            <h2><i class="fa-solid fa-feather"></i> Kutaa Walaloo (Poems)</h2>
+            <p>Walaloowwan adda addaa dubbisuuf mata-duree barbaaddan filadhaa:</p>
+
+            <div class="cards-grid">
+                <article class="card search-item">
+                    <h3>Ijoollee Biyya Arabaa</h3>
+                    <p>Mee waa sigaafadhuu lammii koo, gaafa biyyarraa baatu galaa kee qopheeffatte...</p>
+                    <a href="Walaloowwan/ijoollee_biyya_arabaa.html" class="read-btn">Guutuu Dubbisi &rarr;</a>
+                </article>
+
+                <article class="card search-item">
+                    <h3>Silaa Ni Godaanaa</h3>
+                    <p>Ani silaa ni godaanaa godaansi naaf hin mijjatu, bakka ta'uu qubachuuf jireenyi nan simatu...</p>
+                    <a href="Walaloowwan/silaa_ni_godaanaa.html" class="read-btn">Guutuu Dubbisi &rarr;</a>
+                </article>
+
+                <article class="card search-item">
+                    <h3>Dhahi jalaa</h3>
+                    <p>Ajjeefamaaf dhiphattee guddoo garaa hammaatte Ajjesan ammo eennu san hoo ni irraan fattee..</p>
+                    <a href="Walaloowwan/dhahi_jalaa.html" class="read-btn">Guutuu Dubbisi &rarr;</a>
+                </article>
+                
+                <article class="card search-item">
+                    <h3>Ani keessi koo artistiidha</h3>
+                    <p>An keessi koo artistiidha Garuu hidhaaannoon koo mangistiidha Olkaii shubbisi na godha Shubbisnaan seerri higgiidha..</p>
+                    <a href="Walaloowwan/ani_artistiidha.html" class="read-btn">Guutuu Dubbisi &rarr;</a>
+                </article>
+                
+                <article class="card search-item">
+                    <h3>Ani qotee bulaadha</h3>
+                    <p>Ani qotadhee nyaadha dachii tatarsaasee Koobiicha findigee raaree babaqaqsee Kaachaa garagalchee giciiccaa buqqisee...</p>
+                    <a href="Walaloowwan/shiftaa.html" class="read-btn">Guutuu Dubbisi &rarr;</a>
+                </article>
+                
+                <article class="card search-item">
+                    <h3>walaloo Haadhaa fi Abbaa</h3>
+                    <p>Aayyoo fi Abboo kiyyaa Akkam nagaa jirtuu hunduu duubat haa hafuu isin..</p>
+                    <a href="Walaloowwan/haadhaaf_abbaa.html" class="read-btn">Guutuu Dubbisi &rarr;</a>
+                </article>
+                
+                <article class="card search-item">
+                    <h3>Jawaarii fi Marroo</h3>
+                    <p>Dhageessanii Yaa pp! B fi P sirraa waladhahe Ta’a malee an tana hinbeeku Jawaar fi marroon Yoo waliin galan Sirna pp ni diigu ..</p>
+                    <a href="Walaloowwan/yaa_pp.html" class="read-btn">Guutuu Dubbisi &rarr;</a>
+                </article>
+
+                <article class="card search-item">
+                    <h3>ana haanyaatu Abbichu</h3>
+                    <p>Anaa nyaatu aabichuu! Gaafa lola juntaa aabichuu ni azaane..</p>
+                    <a href="Walaloowwan/abbichuu.html" class="read-btn">Guutuu Dubbisi &rarr;</a>
+                </article>
+                
+                <article class="card search-item">
+                    <h3>Dr Gammachuu Magarsaa</h3>
+                    <p>Dr Gammachuu Magarsaa gooticha jaarraa kana, Hayyuu argaa dhageettii...</p>
+                    <a href="Walaloowwan/dr_gammachuu.html" class="read-btn">Guutuu Dubbisi &rarr;</a>
+                </article>
+                
+                <article class="card search-item">
+                    <h3>qabsoon kaleessaa nuuf hin milkoone!</h3>
+                    <p>wanti siif galuu qabu Buchoo ilma Tasfahee! Kaayyon qabsoofnef kale Yoom itti nuuf milkaahe..</p>
+                    <a href="Walaloowwan/ilma_Tasfaayee.html" class="read-btn">Guutuu Dubbisi &rarr;</a>
+                </article>
+
+                <article class="card search-item">
+                    <h3>Qabsoo Oromoo</h3>
+                    <p>Qabsoo qabsoo jechaa asiif achi kaattu, bara dhufaaf darbaa bosona keessa yaatuu...</p>
+                    <a href="Walaloowwan/qabsoo_oromoo.html" class="read-btn">Guutuu Dubbisi &rarr;</a>
+                </article>
+                
+                <article class="card search-item">
+                    <h3>Gaafa dambiin baala raase</h3>
+                    <p>Gaafa dambii baala baase Odaarrati gooba kaase keesummummaa wallaalee ofittummaa hasaase kopheen itti ijjate hargufee jirma raase ...</p>
+                    <a href="Walaloowwan/gaafa_dambiin_baala_raase.html" class="read-btn">Guutuu Dubbisi &rarr;</a>
+                </article>
+                
+                <article class="card search-item">
+                    <h3>Marroo Dirribaa</h3>
+                    <p>Kuni gooticha jaarraa Kanaa General Marroo Dirribaati...</p>
+                    <a href="Walaloowwan/marroo_dirribaa.html" class="read-btn">Guutuu Dubbisi &rarr;</a>
+                </article>
+
+                <article class="card search-item">
+                    <h3>Harmee mucaan kee</h3>
+                    <p>Harmee mucaan kee abdii muratee ra, mucaan kee qallaan sun inni ati jaallattu boru guddatee Nama ta’aaf inni ati Abdattu..</p>
+                    <a href="Walaloowwan/harmee_mucaan_kee.html" class="read-btn">Guutuu Dubbisi &rarr;</a>
+                </article>
+                
+                <article class="card search-item">
+                    <h3>Silaa warra Baalef galatatu male!</h3>
+                    <p>Kenni jennaa hagami demmi jennaan garamii ...</p>
+                    <a href="Walaloowwan/Silaa_warra_baalef.html" class="read-btn">Guutuu Dubbisi &rarr;</a>
+                </article>
+
+                <article class="card search-item">
+                    <h3>Abjuu Kanaadaa</h3>
+                    <p>Gaaf tokko asii ka'ee ……….passport muradhe immigration deeme …………fiizaallee dhahadhee...</p>
+                    <a href="Walaloowwan/Walaloo_kanaadaa.html" class="read-btn">Guutuu Dubbisi &rarr;</a>
+                </article>
+                
+                <article class="card search-item">
+                    <h3>Anatu siif beeka</h3>
+                    <p>Anatu siif beeka natu sibilisoomsaa natu siguddisaa anatu si misoomaa mataansaa gabrummaadha namana ni dhageessaa..</p>
+                    <a href="Walaloowwan/Anatu_siifbeeka.html" class="read-btn">Guutuu Dubbisi &rarr;</a>
+                </article>
+                
+                <article class="card search-item">
+                    <h3>Shokkolaataa sheekkotii</h3>
+                    <p>Shokkolaataan sheekkotii gad yaatee Baale keesseessaa ..</p>
+                    <a href="Walaloowwan/Shokkolaataa.html" class="read-btn">Guutuu Dubbisi &rarr;</a>
+                </article>
+                
+                <article class="card search-item">
+                    <h3>Ajaa'iba Ethiopia</h3>
+                    <p>Ajaa'iba Ethiopia biyya hojjattoon ishee bilisaan biyyaaf hojjattu ..</p>
+                    <a href="Walaloowwan/Ethiopia.html" class="read-btn">Guutuu Dubbisi &rarr;</a>
+                </article>
+                
+                <article class="card search-item">
+                    <h3>Beekaa fi beekamaa</h3>
+                    <p>Beekkamaan follaw miliyoona galuuf ummata bujaajessa..</p>
+                    <a href="Walaloowwan/beekaa_beekkamaa.html" class="read-btn">Guutuu Dubbisi &rarr;</a>
+                </article>
+            </div>
+        </section>
+
+        <!-- Kutaa Seenaa -->
+        <section id="history" class="content-section grey-bg">
+            <h2><i class="fa-solid fa-book-archive"></i> Kutaa Seenaa</h2>
+            <div class="cards-grid">
+                <article class="card search-item">
+                    <h3>Seenaa Waaqoo Guutuu</h3>
+                    <p>Waaqatu Guutuu eennu? Waaqoo Guutuu Gootota Oromoo Baalee keessaa 1 yoo ta'uu...</p>
+                    <a href="Seenaa/waaqoo_guutuu.html" class="read-btn">Guutuu Dubbisi &rarr;</a>
+                </article>
+
+                <article class="card search-item">
+                    <h3>Biyya Iraan</h3>
+                    <p>Seenaa iraan qopheessan Hasa (nuura baalee) Seenaa qarroominaa pershiyaa duri...</p>
+                    <a href="Seenaa/biyya_iraan.html" class="read-btn">Guutuu Dubbisi &rarr;</a>
+                </article>
+                
+                <div class="card search-item">
+                    <h3>Seenaa Namootaa</h3>
+                    <p>Seenaa gootota fi aartistoota Oromoo.</p>
+                </div>
+                <div class="card search-item">
+                    <h3>Seenaa Aadaa</h3>
+                    <p>Aadaa, Dudhaa, fi Muldhata Oromoo.</p>
+                </div>
+                <div class="card search-item">
+                    <h3>Seenaa Mootummaa & Hawaasaa</h3>
+                    <p>Sirna Gadaa fi Caasaa Mootummaa Oromoo.</p>
+                </div>
+                <div class="card search-item">
+                    <h3>Barruulee Qorannoo</h3>
+                    <p>Qorannoo adda addaa seenaa ilaalchisee.</p>
+                </div>
+            </div>
+        </section>
+        
+                <!--Barruu qoosaaa -->
+        <section id="history" class="content-section grey-bg">
+            <h2><i class="fa-solid fa-book-archive"></i> Kutaa Barruu qoosaa</h2>
+            <div class="cards-grid">
+                <article class="card search-item">
+                    <h3>Haadha manaa maasha Baankii</h3>
+                    <p>Haadha manaatii fi abbaa manaatuu addaan bahuu murteessanii garu sana daa'ima tokko qaban turan...</p>
+                    <a href="Qoosaa/maashina_baankii.html" class="read-btn">Guutuu Dubbisi &rarr;</a>
+                </article>
+                
+                <article class="card search-item">
+                    <h3>Ani jaal Kokorsiif kaardii kuute!</h3>
+                    <p>yeroo tokko waan maqaan isaanii "jaal kokorsi jaal Caccabsi..</p>
+                    <a href="Qoosaa/jaal_kokorsi.html" class="read-btn">Guutuu Dubbisi &rarr;</a>
+                </article>
+                
+                <div class="card search-item">
+                    <h3>Seenaa Namootaa</h3>
+                    <p>Seenaa gootota fi aartistoota Oromoo.</p>
+                </div>
+                <div class="card search-item">
+                    <h3>Seenaa Aadaa</h3>
+                    <p>Aadaa, Dudhaa, fi Muldhata Oromoo.</p>
+                </div>
+                <div class="card search-item">
+                    <h3>Seenaa Mootummaa & Hawaasaa</h3>
+                    <p>Sirna Gadaa fi Caasaa Mootummaa Oromoo.</p>
+                </div>
+                <div class="card search-item">
+                    <h3>Barruulee Qorannoo</h3>
+                    <p>Qorannoo adda addaa seenaa ilaalchisee.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Kutaa Yaada (Opinion) -->
+        <section id="opinion" class="content-section">
+            <h2><i class="fa-regular fa-comment-dots"></i> Kutaa Yaada (Opinion)</h2>
+            <div class="cards-grid">
+                <div class="card search-item">
+                    <h3>Yaada Dhuunfaa</h3>
+                    <p>Ilaalcha dhuunfaa dhimma adda addaa irratti.</p>
+                </div>
+                <div class="card search-item">
+                    <h3>Xiinxala Dhimma Hawaasaa</h3>
+                    <p>Dhimmoota yeroo fi xiinxala hawaasaa.</p>
+                </div>
+                <div class="card search-item">
+                    <h3>Barruu Dheeraa</h3>
+                    <p>Barruulee bal'inaan dhimma irratti dubbataniif.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Kutaa About Me & Social Links -->
+        <section id="about" class="content-section grey-bg search-item">
+            <h2><i class="fa-solid fa-user"></i> Waa'ee Koo (About Me)</h2>
+            <p>Ani Hundee Baddaa Baalee ti. Content creator fi Walaleessaa dha. Dabalataan social media irratti qabiyyee garaa garaa uumaa. Dhimmoota akka Hawaasummaa, siyaasaa fi diinagdee irratti bal'inaan hojjadha.
+            Content Creation, Video/Audio Editing, fi Qorannoo Seenaa irratti xiyyeeffadheen hojjadha.</p>
+            
+            <h3>Nu Quunnamaa / Follow Us:</h3>
+            <div class="social-links">
+                <a href="https://facebook.com" class="social-icon facebook" target="_blank" rel="noopener"><i class="fa-brands fa-facebook"></i> Facebook</a>
+                <a href="https://tiktok.com" class="social-icon tiktok" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i> TikTok</a>
+                <a href="https://youtube.com" class="social-icon youtube" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i> YouTube</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Hundee Baddaa Baalee. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript Link -->
+    <script src="script.js"></script>
+</body>
+</html>
