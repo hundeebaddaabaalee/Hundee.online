@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="om">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galmee Jechoota Afaan Oromoo - Hunde Baddaa Baalee</title>
+    
+    <!-- CSS Linkii Gara Root Folder -->
+    <link rel="stylesheet" href="../style.css">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Structured Data (JSON-LD Schema) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Guddaa jechuun maal?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Guddaa jechuun 'big' ykn waan guddina qabu jechuudha."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Hundee jechuun maal?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Hundee jechuun maqaa (noun) ta'ee, jalqaba waan tokkoo, bakka wanti tokko irraa eegalu ykn giddu-gala fi hundee bu'uuraa jechuudha. Fakkeenyaaf: hundee mukaa, hundee chaarjarii."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Roophii jechuun maal?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Roophii jechuun afaan Ingiliffaatiin 'hippo' ykn 'hippopotamus' jedhama."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Harree jechuun maal?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Harreen bineensa manaa geejjibaaf Oromiyaa keessatti baay'ee tajaajiludha. Meeshaa itti fe'atanii bakka bakkatti socho'uuf oola."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Baddaa jechuun maal?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Baddaa jechuun maqaa lafa jiidhaa bosona qabuuf kennamuudha."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- Visual Customization Salphaa -->
+    <style>
+        .dictionary-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: #1a73e8;
+            color: #ffffff;
+            padding: 10px 18px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(26, 115, 232, 0.3);
+        }
+        .back-btn:hover {
+            background-color: #1557b0;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(26, 115, 232, 0.4);
+        }
+        #dictionarySearch {
+            width: 100%;
+            padding: 12px 15px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            box-sizing: border-box;
+        }
+        .word-card {
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .word-card h3 {
+            margin-top: 0;
+            color: #1a73e8;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header>
+        <a href="../index.html" class="logo-container">
+            <img src="../logo.webp" alt="Logo Hunde Baddaa Baalee" class="site-logo" width="45" height="45" loading="eager">
+            <h1 class="site-title">Hunde Baddaa Baalee</h1>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="../index.html#home">Home</a></li>
+                <li><a href="../index.html#poem">Poem</a></li>
+                <li><a href="../index.html#history">Seenaa Oromoo</a></li>
+                <li><a href="../index.html#dictionary"><i class="fa-solid fa-book"></i> Jechoota & Maqoota</a></li>
+                <li><a href="../index.html#about">About Me</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="dictionary-container">
+        <!-- Button Gara Home Page Deebisu -->
+        <a href="../index.html#dictionary" class="back-btn">
+            <i class="fa-solid fa-house"></i> Gara Fuula Duraatti Deebi'i
+        </a>
+
+        <h2>Galmee Jechoota Afaan Oromoo</h2>
+
+        <!-- Search Bar -->
+        <input type="text" id="dictionarySearch" placeholder="Jechoota barbaadi..." onkeyup="searchWords()">
+
+        <!-- Word Cards List -->
+        <div class="word-list" id="wordList">
+            
+            <div class="word-card">
+                <h3>Guddaa</h3>
+                <p><strong>Hiika:</strong> Big, waan guddina qabu.</p>
+                <p><em>Fakkeenya:</em> Oromiyaan biyya guddaa dha.</p>
+            </div>
+
+            <div class="word-card">
+                <h3>Roophii</h3>
+                <p><strong>Hiika:</strong> Hippo (Hippopotamus).</p>
+                <p><em>Fakkeenya:</em> Roophiin bishaan keessa jiraata.</p>
+            </div>
+
+            <div class="word-card">
+                <h3>Baddaa</h3>
+                <p><strong>Hiika:</strong> Baddaa jechuun maqaa lafa qilleensa baramaa jiidhaa fi bosona baay'ee ofirraa qabuuf kennamuudha.</p>
+                <p>Fakkeenyaaf 'Baddaa Baalee' lafti Baddaa Baalee jedhamuun beekamtu sun, lafa qilleensa baramaa jiidhaafi qabbanooftuu taate, akkasumas bosona ykn mukkeen baay'ee ofirraa qabduudha.</p>
+                <p><em>Fakkeenyaaf:</em> Haalli qilleensaa fi teessuma lafa Oromiyaa, bakka gurguddaa sadihitti qoodama. Isaanis Baddaa, Badda-daree fi Gammoojjii jedhamuun waamamu. "Baddaa" jechuun lafa qilleensa baramaa qabbanaahaa fi bosona baay'ee biqilchuu dandeessu jechuudha. "Badda-daree" jechuun lafa qilleensa baramaa giddu-galeessaa qabaachuun qilleensa ho'aas qabbanaahaas kan hin taane gidduu galeessaa fi baay'ee mijataa ta'e kan qabduudha. "Gammoojjii" jechuun ammoo lafa qilleensa baramaa ho'aa qabduudha.</p>
+                <p><strong>Jecha Wal-qabatu:</strong> <em>Bosona, Daggala, Raasaa, Mukkeen, Huura, Basha</em></p>
+            </div>
+
+            <div class="word-card">
+                <h3>Harree</h3>
+                <p><strong>Hiika:</strong> Beeylada manaa keessaa tokko ta'ee, akka geejjibaatti kan tajaajiluudha.</p>
+                <p>Namoonni meeshaa itti fe'ataniinii bakka bakkatti ittiin socho'uuf kan ooluudha. Bifa daalachaa fi gurra gugurdaa qaba.</p>
+                <p><em>Fayyadama Lammaffaa:</em> Maqaan harree kun yeroo tokko tokko akka arrabsootti itti fayyadamu. Ebaluu kun harreedha jechuun nama homaa hin yaanne akka jechuuti.</p>
+            </div>
+
+            <div class="word-card">
+                <h3>Hundee</h3>
+                <p><strong>Hiika:</strong> Maqaa (Noun). Jalqaba waan tokkoo, bakka wanti tokko irraa jalqabu/eegalu ykn bu'uura waan tokkooti.</p>
+                <p>Yeroo hedduu wanti tokko Hundee jedhamee kan waamamu wanti sun jalqaba waan sanii qofa otoo hin taane, bakki wantichi irraa jalqabe suni gidduu wantichaa fi dhuma ykn qacee isaallee irraa furdaa ykn fagoo yoo ta'e qofa "Hundee" jedhama.</p>
+                <p><em>Fakkeenya:</em> Hundee mukaa, hundee chaarjarii bilbilaa, hundee boollaa, hundee galaanaa, hundee oobruu, hundee godaa, hundee gaaraa, hundee bosonaa...</p>
+                <p><strong>Jecha Wal-qabatu:</strong> <em>Hundeessaa</em> (Jalqabsiisaa ykn bu'uureffamaa). Fakkeenyaaf: "Dhaabbata kana kan hundeesse Obbo Caalaa dha."</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- JavaScript Local Logic -->
+    <script>
+    function searchWords() {
+        var input = document.getElementById('dictionarySearch');
+        var rawFilter = input.value.toLowerCase().trim();
+        var wordCards = document.getElementsByClassName('word-card');
+
+        var filter = rawFilter
+            .replace(/\b(jechuun|maal|dha|jechuu|hoo)\b/g, "")
+            .replace(/[?.,!-]/g, "")
+            .trim();
+
+        for (var i = 0; i < wordCards.length; i++) {
+            var cardTitle = wordCards[i].getElementsByTagName('h3')[0].textContent.toLowerCase();
+            var cardText = wordCards[i].textContent.toLowerCase();
+
+            if (filter === "" || cardTitle.indexOf(filter) > -1 || cardText.indexOf(filter) > -1) {
+                wordCards[i].style.display = "";
+            } else {
+                wordCards[i].style.display = "none";
+            }
+        }
+    }
+    </script>
+
+    <!-- Global JavaScript File -->
+    <script src="../script.js"></script>
+
+</body>
+</html>
