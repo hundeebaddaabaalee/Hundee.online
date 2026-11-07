@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://hundeebaddaabaalee.netlify.app/sitemap.xml
+Sitemap: https://hundee.online/sitemap.xml
