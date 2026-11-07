@@ -1,9 +1,9 @@
 # Hundee.online
 
-Hundee Baddaa Baalee Official site[span_2](start_span)[span_2](end_span). Ani Digital Content Creator fi Walaleessaa dha. Websayitii kana irratti Seenaa Oromoo, Walaloo, fi Yaada dhuunfaa qooduuf itti fayyadamaa.
+Hundee Baddaa Baalee Official Site. Ani Digital Content Creator fi Walaleessaa dha. Websayitii kana irratti Seenaa Oromoo, Walaloo, fi Yaada dhuunfaa qooduuf itti fayyadamaa.
 
 ## Tech Stack (Kan Ittiin Hojjetame)
-* HTML5[span_3](start_span)[span_3](end_span)
+* HTML5
 * CSS3
 * JavaScript
 
@@ -14,4 +14,4 @@ Hundee Baddaa Baalee Official site[span_2](start_span)[span_2](end_span). Ani Di
 * Viidiyootee Social Media fi Taajaajila Koo
 
 ## Author
-* **Hundee Baddaa Baalee**[span_4](start_span)[span_4](end_span)
+* Hundee Baddaa Baalee
