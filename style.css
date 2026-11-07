@@ -1,0 +1,535 @@
+/* General Styling */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #222222;
+    background-color: #f9f9f9;
+    line-height: 1.6;
+    overflow-x: hidden;
+
+    /* Copy-Protection (Prevent Text Selection) */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Form inputs allow selection so users can type naturally */
+input, textarea {
+    -webkit-user-select: auto;
+    -moz-user-select: auto;
+    -ms-user-select: auto;
+    user-select: auto;
+}
+
+/* Header & Navigation */
+header {
+    background-color: #1b2a47;
+    color: #ffffff;
+    padding: 0.8rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.menu-toggle-btn {
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 5px 8px;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+}
+
+.menu-toggle-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Logo Styling */
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
+
+.site-logo {
+    width: 45px;
+    height: 45px;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 2px solid #ff9900;
+    transition: transform 0.3s ease;
+}
+
+.logo-container:hover .site-logo {
+    transform: scale(1.05);
+}
+
+.site-title {
+    font-size: 1.25rem;
+    margin: 0;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.desktop-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    margin: 0;
+    padding: 0;
+}
+
+.desktop-nav a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.desktop-nav a:hover {
+    color: #ffaa22;
+}
+
+/* Search Box (Header) */
+.search-box {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.search-box input {
+    padding: 6px 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background-color: #ffffff;
+    color: #000000;
+    font-size: 14px;
+    outline: none;
+}
+
+.search-box button {
+    background-color: #d97706;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #ffffff;
+    transition: background 0.3s;
+}
+
+.search-box button:hover {
+    background-color: #b45309;
+}
+
+/* Sliding Sidebar Styling */
+.sidebar {
+    height: 100%;
+    width: 280px;
+    position: fixed;
+    z-index: 2000;
+    top: 0;
+    left: -290px;
+    background-color: #111827;
+    overflow-y: auto;
+    transition: left 0.3s ease-in-out;
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar.active {
+    left: 0;
+}
+
+.sidebar-header {
+    padding: 1.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #1f2937;
+    color: #ffaa22;
+}
+
+.sidebar-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 1.8rem;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.sidebar-search {
+    position: relative;
+    padding: 1rem;
+}
+
+.sidebar-search input {
+    width: 100%;
+    padding: 8px 35px 8px 10px;
+    border-radius: 6px;
+    border: 1px solid #374151;
+    background-color: #1f2937;
+    color: #ffffff;
+    font-size: 14px;
+    outline: none;
+}
+
+.sidebar-search-icon {
+    position: absolute;
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9ca3af;
+}
+
+.sidebar-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-links li a {
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #e5e7eb;
+    text-decoration: none;
+    font-size: 0.95rem;
+    border-bottom: 1px solid #1f2937;
+    transition: background 0.2s, padding-left 0.2s;
+}
+
+.sidebar-links li a:hover {
+    background-color: #d97706;
+    color: #ffffff;
+    padding-left: 25px;
+}
+
+.sidebar-footer {
+    margin-top: auto;
+    padding: 1rem;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #6b7280;
+    border-top: 1px solid #1f2937;
+}
+
+/* Dark Background Overlay */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(2px);
+    z-index: 1500;
+    display: none;
+}
+
+.overlay.active {
+    display: block;
+}
+
+/* Hero Section & Profile */
+.hero-section {
+    padding: 3rem 2rem;
+    text-align: center;
+    background: #ffffff;
+}
+
+.profile-img {
+    width: 132px;
+    height: 165px;
+    max-width: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 4px solid #1b2a47;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Content Sections */
+.content-section {
+    padding: 2.5rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.grey-bg {
+    background-color: #f0f2f5;
+}
+
+/* Cards & Layout */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.card {
+    background: #ffffff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+.read-btn {
+    display: inline-block;
+    margin-top: 10px;
+    color: #1b2a47;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.read-btn:hover {
+    color: #d97706;
+}
+
+/* Responsive Video Container */
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 6px;
+    margin-top: 10px;
+    background-color: #000000;
+}
+
+.video-container iframe,
+.video-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 0;
+}
+
+/* Social Links */
+.social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.social-icon {
+    padding: 10px 15px;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: opacity 0.3s;
+}
+
+.social-icon:hover {
+    opacity: 0.9;
+}
+
+.facebook { background-color: #1877f2; }
+.tiktok { background-color: #000000; }
+.youtube { background-color: #cc0000; }
+
+/* Services */
+.services-list {
+    list-style: none;
+    padding: 0;
+}
+
+.services-list li {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+/* Poem Detail Page */
+.poem-container {
+    max-width: 750px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.poem-title {
+    color: #1e293b;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 10px;
+}
+
+.poem-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #1e293b;
+    white-space: pre-wrap;
+}
+
+/* Bifa Maqaa Katabi / Author Name Style */
+.author-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #d97706;
+    display: block;
+    margin-top: 20px;
+}
+
+/* Bifa Guyyaa / Date Style */
+.poem-date {
+    font-size: 0.95rem;
+    color: #64748b;
+    font-style: italic;
+    display: block;
+    margin-top: 4px;
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #1557b0;
+    color: #ffffff;
+    padding: 10px 18px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    margin-top: 25px;
+}
+
+.back-btn:hover {
+    background-color: #0d3c7d;
+    transform: translateY(-2px);
+}
+
+/* Footer */
+footer {
+    background-color: #1b2a47;
+    color: #ffffff;
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: 2rem;
+}
+
+/* Responsive Controls for Screen Sizes */
+@media (max-width: 850px) {
+    .desktop-nav {
+        display: none; /* Mobile irratti menu dhiphaa dhoksa */
+    }
+    .menu-toggle-btn {
+        display: block; /* Mobile irratti button sidebar banu mul'isa */
+    }
+}
+
+@media (min-width: 851px) {
+    .menu-toggle-btn {
+        display: none; /* Desktop irratti button toggle dhoksa */
+    }
+}
+
+/* App Download Card Styling */
+.app-download-card {
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 35px 20px;
+    text-align: center;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.app-icon {
+    font-size: 3.5rem;
+    color: #d97706;
+    margin-bottom: 15px;
+}
+
+.download-btn-apk {
+    background-color: #d97706;
+    color: #ffffff !important;
+    padding: 12px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 8px rgba(217, 119, 6, 0.3);
+}
+
+.download-btn-apk:hover {
+    background-color: #b45309;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(180, 83, 9, 0.4);
+}
+
+.install-guide-box {
+    margin-top: 30px;
+    text-align: left;
+    background-color: #f9fafb;
+    padding: 18px;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+}
+
+.install-guide-box h4 {
+    margin-top: 0;
+    color: #1b2a47;
+    margin-bottom: 10px;
+}
+
+.install-guide-box ol {
+    margin: 0;
+    padding-left: 20px;
+    color: #4b5563;
+    line-height: 1.6;
+}
+
+/* Netlify Badge/Watermark Dhoksuuf */
+.netlify-identity-widget,
+[class*="netlify"],
+iframe[src*="netlify"] {
+    display: none !important;
+}
