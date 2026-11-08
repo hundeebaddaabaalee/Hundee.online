@@ -24,7 +24,7 @@ function searchContent(query = "") {
     if (topSearch && topSearch.value !== query) topSearch.value = query;
     if (sidebarSearch && sidebarSearch.value !== query) sidebarSearch.value = query;
 
-    // Card-iiwwan hunda qorachuu
+    // Card-iiwwan hunda qorachuu (Fuula haaraa wajjin kan wal-simu)
     const cards = document.querySelectorAll('.cards-grid .card, .content-section article, .search-item');
     let hasResults = false;
 
@@ -61,7 +61,7 @@ function triggerSearch() {
     if (topSearch) searchContent(topSearch.value);
 }
 
-// Event Listeners Initialization (Live Search & Security)
+// Event Listeners Initialization (Live Search, Security, APK Feedback & Netlify Badge Removal)
 document.addEventListener('DOMContentLoaded', () => {
     
     // 1. Live Search Input Box-oota Irratti
@@ -92,22 +92,35 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
         }
     });
-});
 
-// Function tracking & feedback for APK Download Button
-document.addEventListener("DOMContentLoaded", () => {
+    // 4. Function tracking & feedback for APK Download Button
     const downloadBtn = document.querySelector('a[download]');
-
     if (downloadBtn) {
         downloadBtn.addEventListener('click', (e) => {
-            // Text button sanaa yeroo xiqqoof jijjiiruu
             const originalText = downloadBtn.innerHTML;
             downloadBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Buufatamaa jira...`;
             
-            // Sekondii 3 booda gara text isa jalqabaatti deebisuu
             setTimeout(() => {
                 downloadBtn.innerHTML = originalText;
             }, 3000);
         });
     }
+
+    // 5. Netlify Watermark / Badge Guutummaatti Haqquu (Dynamic Removal)
+    const removeNetlifyBadge = () => {
+        // Elementoota Netlify badge ykn iframe qaban hunda barbadeessuu
+        const badges = document.querySelectorAll('iframe[src*="netlify"], #netlify-badge, .netlify-badge, a[href*="netlify.com/wt"], div[style*="z-index: 2147483647"]');
+        badges.forEach(b => {
+            let parent = b.parentElement;
+            if (parent && (parent.tagName === 'DIV' || parent.tagName === 'P')) {
+                parent.remove();
+            } else {
+                b.remove();
+            }
+        });
+    };
+
+    removeNetlifyBadge();
+    setTimeout(removeNetlifyBadge, 500);
+    setTimeout(removeNetlifyBadge, 1500);
 });
