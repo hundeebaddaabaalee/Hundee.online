@@ -301,6 +301,7 @@ header {
 }
 
 .read-btn {
+    display: inline-order;
     display: inline-block;
     margin-top: 10px;
     color: #1b2a47;
@@ -326,15 +327,18 @@ footer {
 }
 
 @media (min-width: 851px) {
-    .menu-toggle-btn { display: none; }
+    .menu-token-btn, .menu-toggle-btn { display: none; } /* Keessatti Desktop irratti akka hin mul'anne */
 }
 
-/* Netlify Badge / Watermark Guutummaatti Dhoksuuf */
+/* Hosting Badges & Watermarks Guutummaatti Dhoksuuf (Netlify & Vercel) */
 iframe[src*="netlify"],
 #netlify-badge,
 .netlify-badge,
-a[href*="netlify.com/wt[?]utm_source"],
+a[href*="netlify.com"],
 img[alt*="Netlify"],
+iframe[src*="vercel"],
+.vercel-badge,
+a[href*="vercel.com"],
 div[style*="z-index: 2147483647"] {
     display: none !important;
     visibility: hidden !important;
