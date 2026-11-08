@@ -304,7 +304,7 @@ header {
 }
 
 .card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-50px);
     box-shadow: 0 5px 15px rgba(0,0,0,0.15);
 }
 
@@ -527,9 +527,17 @@ footer {
     line-height: 1.6;
 }
 
-/* Netlify Badge/Watermark Dhoksuuf */
-.netlify-identity-widget,
-[class*="netlify"],
-iframe[src*="netlify"] {
+/* Netlify Badge / Watermark Guutummaatti Dhoksuuf (CSS Selector Haaraa) */
+iframe[src*="netlify"],
+#netlify-badge,
+.netlify-badge,
+a[href*="netlify.com/wt[?]utm_source"],
+img[alt*="Netlify"],
+div[style*="z-index: 2147483647"] {
     display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    height: 0 !important;
+    width: 0 !important;
 }
