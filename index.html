@@ -20,6 +20,9 @@
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
 
+    <!-- AOS Animation Library CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <!-- Open Graph Tags -->
     <meta property="og:title" content="Hundee Baddaa Baalee | Personal Website">
     <meta property="og:description" content="Walaloowwan, seenaa Oromoo, galmee jechoota fi yaada dhuunfaa Hundee Baddaa Baalee asitti argadhu.">
@@ -96,7 +99,7 @@
     <!-- MAIN LANDMARK -->
     <main>
         <!-- Home / Hero Section -->
-        <section id="home" class="hero-section search-item">
+        <section id="home" class="hero-section search-item" data-aos="fade-in">
             <div class="hero-content">
                 <img src="profile.webp" alt="Suuraa Hundee Baddaa Baalee" class="profile-img" width="132" height="165" loading="eager">
                 <h2>Baga Nagaan Dhuftan!</h2>
@@ -104,49 +107,49 @@
             </div>
         </section>
 
-        <!-- DASHBOARD HUB: Mata-dureewwan Gurguddoo Qofa (Kutaa Kutaan) -->
-        <section class="content-section">
+        <!-- DASHBOARD HUB: Mata-dureewwan Gurguddoo Qofa -->
+        <section class="content-section" data-aos="fade-up">
             <h2><i class="fa-solid fa-compass"></i> Qabiyyee Websayitichaa</h2>
             <p>Mata-duree barbaaddan filachuun qabiyyee guutuu argachuu dandeessu:</p>
 
             <div class="cards-grid">
                 <!-- 1. Galmee Jechoota -->
-                <article class="card highlight-card search-item">
+                <article class="card highlight-card search-item" data-aos="zoom-in" data-aos-delay="100">
                     <h4><i class="fa-solid fa-book-bookmark" style="color: #d97706;"></i> Galmee Jechoota</h4>
                     <p>Hiika jechoota Afaan Oromoo, makmaasaa fi loqoda adda addaa.</p>
                     <a href="Jechoota/jechoota.html" class="read-btn">Jechoota Ilaali &rarr;</a>
                 </article>
 
                 <!-- 2. Kutaa Walaloo -->
-                <article id="poem" class="card search-item">
+                <article id="poem" class="card search-item" data-aos="zoom-in" data-aos-delay="200">
                     <h4><i class="fa-solid fa-feather" style="color: #1b2a47;"></i> Kutaa Walaloo (Poems)</h4>
                     <p>Walaloowwan hawwoo, qabsoo, haadhaa-abbaa fi hawaasummaa hedduu asii argadhu.</p>
                     <a href="Walaloowwan/ijoollee_biyya_arabaa.html" class="read-btn">Walaloo Ilaali &rarr;</a>
                 </article>
 
                 <!-- 3. Kutaa Seenaa -->
-                <article id="history" class="card search-item">
+                <article id="history" class="card search-item" data-aos="zoom-in" data-aos-delay="300">
                     <h4><i class="fa-solid fa-landmark" style="color: #059669;"></i> Kutaa Seenaa Oromoo</h4>
                     <p>Seenaa gootota Oromoo akka Waaqoo Guutuu, Marroo Dirribaa fi qarroomina addunyaa.</p>
                     <a href="Seenaa/waaqoo_guutuu.html" class="read-btn">Seenaa Dubbisi &rarr;</a>
                 </article>
 
                 <!-- 4. Kutaa Qoosaa -->
-                <article id="qoosaa" class="card search-item">
+                <article id="qoosaa" class="card search-item" data-aos="zoom-in" data-aos-delay="400">
                     <h4><i class="fa-solid fa-face-laugh" style="color: #ea580c;"></i> Kutaa Barruu Qoosaa</h4>
                     <p>Barruulee kofalchiisoo fi qoosaa qalbii hubaachiisan.</p>
                     <a href="Qoosaa/maashina_baankii.html" class="read-btn">Barruu Qoosaa Ilaali &rarr;</a>
                 </article>
 
                 <!-- 5. Kutaa Yaada Dhuunfaa -->
-                <article id="opinion" class="card search-item">
+                <article id="opinion" class="card search-item" data-aos="zoom-in" data-aos-delay="500">
                     <h4><i class="fa-regular fa-comment-dots" style="color: #2563eb;"></i> Kutaa Yaada (Opinion)</h4>
                     <p>Xiinxala dhimma hawaasaa fi yaada dhuunfaa guyyaa-guyyaa.</p>
                     <a href="#opinion" class="read-btn">Yaada Dubbisi &rarr;</a>
                 </article>
 
                 <!-- 6. Kutaa Tajaajila Koo -->
-                <article id="services" class="card search-item">
+                <article id="services" class="card search-item" data-aos="zoom-in" data-aos-delay="600">
                     <h4><i class="fa-solid fa-briefcase" style="color: #7c3aed;"></i> Tajaajila Koo & Appii</h4>
                     <p>Hunde Family App fi tajaajila miidiyaa hawaasaa irratti qabu.</p>
                     <a href="Myapp/hunde_family.html" class="read-btn">Appii Buufadhu &rarr;</a>
@@ -155,7 +158,7 @@
         </section>
 
         <!-- YouTube Video Section -->
-        <section class="content-section grey-bg">
+        <section class="content-section grey-bg" data-aos="fade-up">
             <h2><i class="fa-brands fa-youtube" style="color:red;"></i> Viidiyoolee Social Media</h2>
             <div class="cards-grid">
                 <article class="card search-item">
@@ -170,7 +173,7 @@
         </section>
 
         <!-- Kutaa About Me -->
-        <section id="about" class="content-section search-item">
+        <section id="about" class="content-section search-item" data-aos="fade-up">
             <h2><i class="fa-solid fa-user"></i> Waa'ee Koo (About Me)</h2>
             <p>Ani Hundee Baddaa Baalee ti. Ogeessa miidiyaa hawaasaa, walaleessaa fi barreessaa dha.</p>
         </section>
@@ -180,6 +183,15 @@
     <footer>
         <p>&copy; 2026 Hundee Baddaa Baalee. All Rights Reserved.</p>
     </footer>
+
+    <!-- AOS Animation Library JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+    </script>
 
     <!-- Main JavaScript File -->
     <script src="script.js"></script>
