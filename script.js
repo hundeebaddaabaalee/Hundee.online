@@ -66,21 +66,25 @@ document.addEventListener('DOMContentLoaded', () => {
         sidebarSearch.addEventListener('input', (e) => searchContent(e.target.value));
     }
 
+    // Security & Anti-copy protections
     document.addEventListener('contextmenu', (e) => e.preventDefault());
     document.addEventListener('copy', (e) => e.preventDefault());
+    document.addEventListener('cut', (e) => e.preventDefault());
+    document.addEventListener('paste', (e) => e.preventDefault());
 
     document.addEventListener('keydown', (e) => {
         const key = e.key.toLowerCase();
         const isCtrlOrCmd = e.ctrlKey || e.metaKey;
         if (
-            (isCtrlOrCmd && (key === 'c' || key === 'u' || key === 's')) || 
-            (isCtrlOrCmd && e.shiftKey && key === 'i') || 
+            (isCtrlOrCmd && (key === 'c' || key === 'u' || key === 's' || key === 'p')) || 
+            (isCtrlOrCmd && e.shiftKey && (key === 'i' || key === 'j' || key === 'c')) || 
             e.key === 'F12'
         ) {
             e.preventDefault();
         }
     });
 
+    // Download Button Spinner Effect
     const downloadBtn = document.querySelector('a[download]');
     if (downloadBtn) {
         downloadBtn.addEventListener('click', (e) => {
@@ -92,19 +96,22 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    const removeNetlifyBadge = () => {
-        const badges = document.querySelectorAll('iframe[src*="netlify"], #netlify-badge, .netlify-badge, a[href*="netlify.com/wt"], div[style*="z-index: 2147483647"]');
-        badges.forEach(b => {
-            let parent = b.parentElement;
-            if (parent && (parent.tagName === 'DIV' || parent.tagName === 'P')) {
+    // Badge / Watermark Removal (Netlify or any leftover elements)
+    const removeWatermarks = () => {
+        const elementsToRemove = document.querySelectorAll(
+            'iframe[src*="netlify"], #netlify-badge, .netlify-badge, a[href*="netlify.com/wt"], div[style*="z-index: 2147483647"], .vercel-badge, iframe[src*="vercel"]'
+        );
+        elementsToRemove.forEach(el => {
+            let parent = el.parentElement;
+            if (parent && (parent.tagName === 'DIV' || parent.tagName === 'P') && parent.children.length === 1) {
                 parent.remove();
             } else {
-                b.remove();
+                el.remove();
             }
         });
     };
 
-    removeNetlifyBadge();
-    setTimeout(removeNetlifyBadge, 500);
-    setTimeout(removeNetlifyBadge, 1500);
+    removeWatermarks();
+    setTimeout(removeWatermarks, 300);
+    setTimeout(removeWatermarks, 1000);
 });
