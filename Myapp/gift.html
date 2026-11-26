@@ -132,6 +132,21 @@
   <script>
     const API_BASE = "https://hunde-backend-7ryw.onrender.com";
 
+    const FALLBACK_COUNTRIES = [
+      { name: "Kenya", isoCode: "KE", dialCode: "+254", flagEmoji: "🇰🇪" },
+      { name: "Ethiopia", isoCode: "ET", dialCode: "+251", flagEmoji: "🇪🇹" },
+      { name: "Somalia", isoCode: "SO", dialCode: "+252", flagEmoji: "🇸🇴" },
+      { name: "Djibouti", isoCode: "DJ", dialCode: "+253", flagEmoji: "🇩🇯" },
+      { name: "Uganda", isoCode: "UG", dialCode: "+256", flagEmoji: "🇺🇬" },
+      { name: "Tanzania", isoCode: "TZ", dialCode: "+255", flagEmoji: "🇹🇿" },
+      { name: "Bahrain", isoCode: "BH", dialCode: "+973", flagEmoji: "🇧🇭" },
+      { name: "Saudi Arabia", isoCode: "SA", dialCode: "+966", flagEmoji: "🇸🇦" },
+      { name: "United Arab Emirates", isoCode: "AE", dialCode: "+971", flagEmoji: "🇦🇪" },
+      { name: "Qatar", isoCode: "QA", dialCode: "+974", flagEmoji: "🇶🇦" },
+      { name: "United States", isoCode: "US", dialCode: "+1", flagEmoji: "🇺🇸" },
+      { name: "United Kingdom", isoCode: "GB", dialCode: "+44", flagEmoji: "🇬🇧" }
+    ];
+
     const searchInput = document.getElementById("countrySearch");
     const countrySelect = document.getElementById("countrySelect");
     const phoneInput = document.getElementById("recipientPhone");
@@ -145,7 +160,7 @@
 
     function renderCountries(list, preferredIso = "") {
       countrySelect.innerHTML = "";
-      if (!list || list.length === 0) {
+      if (!Array.isArray(list) || list.length === 0) {
         const opt = document.createElement("option");
         opt.value = "";
         opt.textContent = "Biyya barbaadame hin argamne";
@@ -174,17 +189,26 @@
       countryStatus.textContent = "Online irraa harkifachaa jira...";
       try {
         const res = await fetch(`${API_BASE}/api/countries`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
-        allCountries = Array.isArray(data.countries) ? data.countries : [];
+        const apiList = Array.isArray(data.countries) ? data.countries : [];
 
-        const defaultIso = allCountries.some((c) => c.isoCode === "KE")
-          ? "KE"
-          : (allCountries[0]?.isoCode || "");
-
-        renderCountries(allCountries, defaultIso);
-        countryStatus.textContent = `Biyyoota ${allCountries.length} fe'amaniiru.`;
+        if (apiList.length > 0) {
+          allCountries = apiList;
+          const defaultIso = allCountries.some((c) => c.isoCode === "KE")
+            ? "KE"
+            : (allCountries[0]?.isoCode || "");
+          renderCountries(allCountries, defaultIso);
+          countryStatus.textContent = `Biyyoota ${allCountries.length} fe'amaniiru (Online).`;
+          return;
+        }
+        throw new Error("Empty countries list");
       } catch (err) {
-        countryStatus.textContent = "Biyyoota harkisuun hin danda'amne. Network ilaali.";
+        allCountries = [...FALLBACK_COUNTRIES].sort((a, b) =>
+          a.name.localeCompare(b.name)
+        );
+        renderCountries(allCountries, "KE");
+        countryStatus.textContent = `Biyyoota ${allCountries.length} fe'amaniiru (Fallback).`;
       }
     }
 
@@ -194,7 +218,10 @@
       if (!isoCode) return;
 
       try {
-        const res = await fetch(`${API_BASE}/api/data-packages?countryCode=${encodeURIComponent(isoCode)}`);
+        const res = await fetch(
+          `${API_BASE}/api/data-packages?countryCode=${encodeURIComponent(isoCode)}`
+        );
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
         const packages = Array.isArray(data.packages) ? data.packages : [];
 
@@ -243,12 +270,15 @@
         renderCountries(allCountries, countrySelect.value);
         return;
       }
+      const qDigits = q.replace(/\D/g, "");
       const filtered = allCountries.filter((c) => {
         const nameMatch = (c.name || "").toLowerCase().includes(q);
         const isoMatch = (c.isoCode || "").toLowerCase().includes(q);
-        const dialWithPlus = (c.dialCode || "").toLowerCase().includes(q);
-        const dialDigits = (c.dialCode || "").replace(/\D/g, "").includes(q.replace(/\D/g, "")) && /\d/.test(q);
-        return nameMatch || isoMatch || dialWithPlus || dialDigits;
+        const dialMatch = (c.dialCode || "").toLowerCase().includes(q);
+        const digitsMatch =
+          qDigits.length > 0 &&
+          (c.dialCode || "").replace(/\D/g, "").includes(qDigits);
+        return nameMatch || isoMatch || dialMatch || digitsMatch;
       });
       renderCountries(filtered);
     });
