@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="om">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hunde Family - Data Gifts</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+    body {
+      margin: 0;
+      padding: 16px;
+      background: #f4f5f9;
+      color: #18181b;
+    }
+    .card {
+      max-width: 480px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    }
+    h2 {
+      margin: 0 0 14px;
+      font-size: 20px;
+      color: #4f46e5;
+    }
+    .field {
+      margin-bottom: 14px;
+    }
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #334155;
+    }
+    input, select {
+      width: 100%;
+      padding: 11px 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      font-size: 15px;
+      background: #fff;
+      color: #0f172a;
+    }
+    input:focus, select:focus {
+      outline: none;
+      border-color: #4f46e5;
+    }
+    .status {
+      font-size: 12px;
+      color: #475569;
+      margin-top: 6px;
+      min-height: 18px;
+    }
+    .submit-btn {
+      width: 100%;
+      min-height: 48px;
+      padding: 12px 16px;
+      border: none;
+      border-radius: 10px;
+      background: #4f46e5;
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.3;
+      cursor: pointer;
+    }
+    .submit-btn:active {
+      background: #4338ca;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>🎁 Data Gifts — Hundee.online</h2>
+
+    <div class="field">
+      <label for="countrySearch">Biyya Fudhataa Barbaadi (Name / Code / Number):</label>
+      <input
+        id="countrySearch"
+        type="text"
+        placeholder="Fkn: 2, Kenya, Ethiopia, +254..."
+        autocomplete="off"
+      />
+    </div>
+
+    <div class="field">
+      <label for="countrySelect">Biyya Filatame (Country & Dial Code):</label>
+      <select id="countrySelect">
+        <option value="">Biyyoota fe'amaa jiru...</option>
+      </select>
+      <div id="countryStatus" class="status"></div>
+    </div>
+
+    <div class="field">
+      <label for="recipientPhone">Lakkoofsa Bilbilaa Fudhataa (Recipient Phone):</label>
+      <input
+        id="recipientPhone"
+        type="tel"
+        placeholder="+2547..."
+      />
+    </div>
+
+    <div class="field">
+      <label for="packageSelect">Paakeejii fi Gatii Sharafaan (Local & USD):</label>
+      <select id="packageSelect">
+        <option value="">Paakeejii filadhu...</option>
+      </select>
+      <div id="packageStatus" class="status"></div>
+    </div>
+
+    <div class="field">
+      <label for="giftNote">Ergaa Jaalalaa (Optional Note):</label>
+      <input
+        id="giftNote"
+        type="text"
+        placeholder="Fkn: Baga geesse, fayyaa..."
+      />
+    </div>
+
+    <button id="submitBtn" class="submit-btn" type="button">
+      🎁 KAFFALII & ERGII
+    </button>
+    <div id="actionStatus" class="status"></div>
+  </div>
+
+  <script>
+    const API_BASE = "https://hunde-backend-7ryw.onrender.com";
+
+    const searchInput = document.getElementById("countrySearch");
+    const countrySelect = document.getElementById("countrySelect");
+    const phoneInput = document.getElementById("recipientPhone");
+    const packageSelect = document.getElementById("packageSelect");
+    const countryStatus = document.getElementById("countryStatus");
+    const packageStatus = document.getElementById("packageStatus");
+    const actionStatus = document.getElementById("actionStatus");
+    const submitBtn = document.getElementById("submitBtn");
+
+    let allCountries = [];
+
+    function renderCountries(list, preferredIso = "") {
+      countrySelect.innerHTML = "";
+      if (!list || list.length === 0) {
+        const opt = document.createElement("option");
+        opt.value = "";
+        opt.textContent = "Biyya barbaadame hin argamne";
+        countrySelect.appendChild(opt);
+        packageSelect.innerHTML = `<option value="">Paakeejii hin jiru</option>`;
+        return;
+      }
+
+      list.forEach((c) => {
+        const opt = document.createElement("option");
+        opt.value = c.isoCode;
+        opt.dataset.dial = c.dialCode || "";
+        opt.textContent = `${c.flagEmoji || "🌍"} ${c.name} (${c.dialCode || ""})`;
+        countrySelect.appendChild(opt);
+      });
+
+      if (preferredIso) {
+        const found = list.find((c) => c.isoCode === preferredIso);
+        if (found) countrySelect.value = found.isoCode;
+      }
+
+      handleCountryChange();
+    }
+
+    async function loadCountries() {
+      countryStatus.textContent = "Online irraa harkifachaa jira...";
+      try {
+        const res = await fetch(`${API_BASE}/api/countries`);
+        const data = await res.json();
+        allCountries = Array.isArray(data.countries) ? data.countries : [];
+
+        const defaultIso = allCountries.some((c) => c.isoCode === "KE")
+          ? "KE"
+          : (allCountries[0]?.isoCode || "");
+
+        renderCountries(allCountries, defaultIso);
+        countryStatus.textContent = `Biyyoota ${allCountries.length} fe'amaniiru.`;
+      } catch (err) {
+        countryStatus.textContent = "Biyyoota harkisuun hin danda'amne. Network ilaali.";
+      }
+    }
+
+    async function loadPackages(isoCode) {
+      packageSelect.innerHTML = `<option value="">Paakeejii fe'amaa jira...</option>`;
+      packageStatus.textContent = "";
+      if (!isoCode) return;
+
+      try {
+        const res = await fetch(`${API_BASE}/api/data-packages?countryCode=${encodeURIComponent(isoCode)}`);
+        const data = await res.json();
+        const packages = Array.isArray(data.packages) ? data.packages : [];
+
+        packageSelect.innerHTML = "";
+        if (packages.length === 0) {
+          packageSelect.innerHTML = `<option value="">Paakeejii data biyya kanaaf hin jiru</option>`;
+          packageStatus.textContent = "Paakeejii hin argamne.";
+          return;
+        }
+
+        packages.forEach((pkg) => {
+          const opt = document.createElement("option");
+          opt.value = pkg.id || "";
+          opt.textContent = pkg.label || `${pkg.operatorName} - $${pkg.amount}`;
+          packageSelect.appendChild(opt);
+        });
+
+        packageStatus.textContent = `Paakeejii ${packages.length} argameera.`;
+      } catch (err) {
+        packageSelect.innerHTML = `<option value="">Paakeejii harkisuun hin danda'amne</option>`;
+        packageStatus.textContent = "Dogoggora network yeroo paakeejii fe'amu.";
+      }
+    }
+
+    function handleCountryChange() {
+      const selectedOpt = countrySelect.options[countrySelect.selectedIndex];
+      if (!selectedOpt || !selectedOpt.value) return;
+
+      const iso = selectedOpt.value;
+      const dial = (selectedOpt.dataset.dial || "").trim();
+
+      if (dial) {
+        const current = phoneInput.value.trim();
+        const localPart = current.startsWith("+")
+          ? current.replace(/^\+\d+\s*/, "")
+          : current;
+        phoneInput.value = localPart ? `${dial} ${localPart}` : `${dial} `;
+      }
+
+      loadPackages(iso);
+    }
+
+    searchInput.addEventListener("input", () => {
+      const q = searchInput.value.trim().toLowerCase();
+      if (!q) {
+        renderCountries(allCountries, countrySelect.value);
+        return;
+      }
+      const filtered = allCountries.filter((c) => {
+        const nameMatch = (c.name || "").toLowerCase().includes(q);
+        const isoMatch = (c.isoCode || "").toLowerCase().includes(q);
+        const dialWithPlus = (c.dialCode || "").toLowerCase().includes(q);
+        const dialDigits = (c.dialCode || "").replace(/\D/g, "").includes(q.replace(/\D/g, "")) && /\d/.test(q);
+        return nameMatch || isoMatch || dialWithPlus || dialDigits;
+      });
+      renderCountries(filtered);
+    });
+
+    countrySelect.addEventListener("change", handleCountryChange);
+
+    submitBtn.addEventListener("click", () => {
+      const selectedOpt = countrySelect.options[countrySelect.selectedIndex];
+      const iso = selectedOpt?.value || "";
+      const phone = phoneInput.value.trim();
+      const pkgId = packageSelect.value;
+
+      if (!iso || !phone || !pkgId) {
+        actionStatus.textContent = "Maaloo biyya, lakkoofsa bilbilaa, fi paakeejii guuti.";
+        return;
+      }
+
+      actionStatus.textContent = `Qophaa'e: ${iso} | ${phone} | SKU: ${pkgId}`;
+    });
+
+    loadCountries();
+  </script>
+</body>
+</html>
