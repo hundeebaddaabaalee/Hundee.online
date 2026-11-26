@@ -56,6 +56,7 @@
       color: #475569;
       margin-top: 6px;
       min-height: 18px;
+      word-break: break-word;
     }
     .submit-btn {
       width: 100%;
@@ -69,6 +70,10 @@
       font-weight: 700;
       line-height: 1.3;
       cursor: pointer;
+    }
+    .submit-btn:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
     }
     .submit-btn:active {
       background: #4338ca;
@@ -151,12 +156,33 @@
     const countrySelect = document.getElementById("countrySelect");
     const phoneInput = document.getElementById("recipientPhone");
     const packageSelect = document.getElementById("packageSelect");
+    const noteInput = document.getElementById("giftNote");
     const countryStatus = document.getElementById("countryStatus");
     const packageStatus = document.getElementById("packageStatus");
     const actionStatus = document.getElementById("actionStatus");
     const submitBtn = document.getElementById("submitBtn");
 
     let allCountries = [];
+
+    // Android WebView irraa yoo token ergame ni qaba; yoo hin jiraanne localStorage/window ilaala
+    function getAuthToken() {
+      if (window.FIREBASE_ID_TOKEN && String(window.FIREBASE_ID_TOKEN).trim()) {
+        return String(window.FIREBASE_ID_TOKEN).trim();
+      }
+      if (window.AndroidBridge && typeof window.AndroidBridge.getIdToken === "function") {
+        const t = window.AndroidBridge.getIdToken();
+        if (t && String(t).trim()) return String(t).trim();
+      }
+      const saved = localStorage.getItem("hunde_firebase_id_token");
+      return saved ? saved.trim() : "";
+    }
+
+    window.setFirebaseIdToken = function (token) {
+      window.FIREBASE_ID_TOKEN = token || "";
+      if (token) {
+        localStorage.setItem("hunde_firebase_id_token", token);
+      }
+    };
 
     function renderCountries(list, preferredIso = "") {
       countrySelect.innerHTML = "";
@@ -235,6 +261,8 @@
         packages.forEach((pkg) => {
           const opt = document.createElement("option");
           opt.value = pkg.id || "";
+          opt.dataset.operatorId = pkg.operatorId != null ? pkg.operatorId : "";
+          opt.dataset.amount = pkg.amount != null ? pkg.amount : "";
           opt.textContent = pkg.label || `${pkg.operatorName} - $${pkg.amount}`;
           packageSelect.appendChild(opt);
         });
@@ -285,18 +313,60 @@
 
     countrySelect.addEventListener("change", handleCountryChange);
 
-    submitBtn.addEventListener("click", () => {
-      const selectedOpt = countrySelect.options[countrySelect.selectedIndex];
-      const iso = selectedOpt?.value || "";
-      const phone = phoneInput.value.trim();
-      const pkgId = packageSelect.value;
+    submitBtn.addEventListener("click", async () => {
+      const selectedCountry = countrySelect.options[countrySelect.selectedIndex];
+      const selectedPkg = packageSelect.options[packageSelect.selectedIndex];
 
-      if (!iso || !phone || !pkgId) {
+      const iso = selectedCountry?.value || "";
+      const phone = phoneInput.value.trim();
+      const operatorId = Number(selectedPkg?.dataset.operatorId || 0);
+      const amount = Number(selectedPkg?.dataset.amount || 0);
+      const note = noteInput.value.trim();
+
+      if (!iso || !phone || !operatorId || !amount) {
         actionStatus.textContent = "Maaloo biyya, lakkoofsa bilbilaa, fi paakeejii guuti.";
         return;
       }
 
-      actionStatus.textContent = `Qophaa'e: ${iso} | ${phone} | SKU: ${pkgId}`;
+      const idToken = getAuthToken();
+      if (!idToken) {
+        actionStatus.textContent = "Kaffaltii/Ergii erguuf Firebase ID token barbaachisa (Android app ykn login irraa).";
+        return;
+      }
+
+      const idempotencyKey = `gift_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+
+      submitBtn.disabled = true;
+      actionStatus.textContent = "Kennaan ergamaa jira...";
+
+      try {
+        const res = await fetch(`${API_BASE}/api/gifts/send`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${idToken}`
+          },
+          body: JSON.stringify({
+            recipientPhone: phone,
+            operatorId: operatorId,
+            amount: amount,
+            countryCode: iso,
+            note: note,
+            idempotencyKey: idempotencyKey
+          })
+        });
+
+        const data = await res.json();
+        if (!res.ok || !data.success) {
+          throw new Error(data.error || "Erguun hin danda'amne.");
+        }
+
+        actionStatus.textContent = data.message || "Kennaan milkaa'inaan ergameera!";
+      } catch (err) {
+        actionStatus.textContent = err.message || "Dogoggorri uumameera.";
+      } finally {
+        submitBtn.disabled = false;
+      }
     });
 
     loadCountries();
